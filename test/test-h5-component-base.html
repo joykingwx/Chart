@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            font-size: 12px;
+        }
+
+        .iphone {
+            width: 340px;
+            height: 540px;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -170px;
+            margin-top: -270px;
+
+            background: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/H5ComponentBase.css">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../js/H5ComponentBase.js"></script>
+</head>
+<body>
+<div class="iphone">
+
+</div>
+
+<script>
+    let cfg = {
+        type: 'base',
+        /*text: 'this is wen ben nei rong',*/
+        css: {
+            width: 200,
+            height: 325,
+            left: 30,
+            top: 50,
+            /*backgroundColor:'red',*/
+            backgroundImage: 'url(../imgs/face_img_right.png)',
+            backgroundSize: '100%',
+            backgroundRepeat: 'no-repeat'
+        },
+        animate: {
+            onIn: {
+                top: 20,
+                opacity: 1
+            },
+            onOut: {
+                top: 80,
+                opacity: 0
+            }
+        },
+
+        centent: true
+    };
+    let H5 = new H5ComponentBase('first', cfg);
+    $('.iphone').append(H5);
+
+    let leave = true;
+    $('body').on('click', function () {
+        leave = !leave;
+        $('.h5_component').trigger(leave ? 'onLeave' : 'onLoad');
+    })
+</script>
+
+</body>
+</html>

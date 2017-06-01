@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            font-size: 12px;
+            overflow: hidden;
+
+        }
+
+        .iphone {
+            width: 340px;
+            height: 540px;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -170px;
+            margin-top: -270px;
+
+            background: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/H5ComponentBase.css">
+    <link rel="stylesheet" href="../css/H5ComponentPoint.css">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../js/H5ComponentBase.js"></script>
+    <script src="../js/H5ComponentPoint.js"></script>
+</head>
+<body>
+<div class="iphone">
+
+</div>
+
+<script>
+    let cfg = {
+        type: 'base',
+        data: [
+            ['A项', .4, 'green'],
+            ['B项', .2, 'yellow', 0, '-60%'],
+            ['C项', .3, 'red', 0, '120%']
+        ],
+        css: {
+            width: 150,
+            height: 150,
+            left: '22%',
+            bottom: '42%'
+        }
+    };
+    let H5 = new H5ComponentPoint('first', cfg);
+    $('.iphone').append(H5);
+
+    let leave = true;
+    $('body').on('click', function () {
+        leave = !leave;
+        $('.h5_component').trigger(leave ? 'onLeave' : 'onLoad');
+    })
+    setTimeout(function(){
+        $('body').click()
+    },1000)
+</script>
+
+</body>
+</html>

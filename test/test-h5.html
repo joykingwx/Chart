@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="H5">
+
+</div>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="../node_modules/fullpage.js/dist/jquery.fullpage.js"></script>
+<script src="../js/H5.js"></script>
+<script src="../js/H5ComponentBase.js"></script>
+<script>
+
+    $(function () {
+        let show = false;
+        let h5 = new H5();
+        h5.addPage('face')
+            .addComponent('logo', {
+                text: 'logo',
+                css: {
+                    width: 100,
+                    height: 200,
+                    position: 'absolute',
+                    top: 100,
+                    background: 'red',
+                    opacity: 0
+                },
+                centent: true,
+                animate: {
+                    onIn: {
+                        //top:50,
+                        opacity: 1
+                    },
+                    onOut: {
+                        //top:0,
+                        opacity: 0
+                    }
+                }
+            })
+            .addComponent('slogan', {
+                reference: 'logo',
+                text: 'slogan',
+                css: {
+                    width: 100,
+                    height: 100,
+                    position: 'absolute',
+                    top: 25,
+                    background: 'yellow',
+                },
+                centent: true,
+                click: function () {
+                    if (show) {
+                        $('.h5_component_name_logo').show();
+                    } else {
+                        $('.h5_component_name_logo').hide();
+                    }
+                    show = !show;
+                }
+            });
+        h5.addPage('desc')
+            .addComponent('page-3', {
+                text: 'page-3',
+                css: {
+                    width: 100,
+                    height: 100,
+                    position: 'absolute',
+                    top: 100,
+                    background: 'background',
+                    "border-radius": '50%',
+                    textAlign: 'center',
+                    lineHeight: '100px',
+                    color: '#fff'
+                },
+                centent: true,
+                click: function () {
+                    alert('heihei');
+                }
+            })
+            .addComponent('page-4', {
+                text: 'page-4',
+                referenceTo: 'page-3',
+                css: {
+                    background: 'red',
+                    position: 'absolute',
+                    top: 0,
+                    right: -100
+                }
+            });
+        h5.addPage('desc', 'page-3')
+            .addComponent('page-5');
+        h5.loader();
+    });
+
+</script>
+</body>
+</html>

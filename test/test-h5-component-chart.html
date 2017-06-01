@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            font-size: 12px;
+            overflow: hidden;
+
+        }
+
+        .iphone {
+            width: 340px;
+            height: 540px;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -170px;
+            margin-top: -270px;
+
+            background: #fff;
+        }
+    </style>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="../js/H5ComponentBase.js"></script>
+    <script src="../js/H5ComponentChart.js"></script>
+</head>
+<body>
+<div class="iphone">
+
+</div>
+
+<script>
+    /*
+     * char.js支持的图标类型如下
+     * 1.bar
+     * 2.line
+     * 3.radar
+     * 4
+     * */
+    let cfg = {
+        type: 'radar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 25],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scale: {
+                ticks: {
+                    suggestedMin: 50,
+                    suggestedMax: 100
+                }
+            }
+        },
+        css: {
+            width: 300,
+            height: 300,
+            position: 'absolute',
+            left: '5%',
+            bottom: '5%'
+        }
+    };
+    let H5 = new H5ComponentPolyLine('first', cfg);
+    $('.iphone').append(H5);
+
+    let leave = true;
+    $('body').on('click', function () {
+        leave = !leave;
+        $('.h5_component').trigger(leave ? 'onLeave' : 'onLoad');
+    });
+</script>
+
+</body>
+</html>

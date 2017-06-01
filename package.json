@@ -1,0 +1,17 @@
+{
+  "name": "chart",
+  "version": "1.0.0",
+  "description": "组件化开发H5图表统计",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "fullpage.js": "^2.9.4"
+  },
+  "dependencies": {
+    "chart.js": "^2.6.0"
+  }
+}

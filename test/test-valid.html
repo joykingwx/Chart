@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        body {
+            margin: 0;
+        }
+
+        .component {
+            height: 60px;
+            margin-bottom: 20px;
+            background: #aaa;
+            display: none;
+
+        }
+    </style>
+</head>
+<body>
+<div id="H5">
+    <div class="page section" id="page-1">
+        <div class="component logo">logo</div>
+        <div class="component slogan">slogan</div>
+    </div>
+    <div class="page section" id="page-2">
+        <div class="component desc">desc</div>
+    </div>
+    <div class="page section" id="page-3">
+        <div class="component bar">bar</div>
+    </div>
+</div>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="../node_modules/fullpage.js/dist/jquery.fullpage.js"></script>
+<script>
+    $(function () {
+
+        //初始化
+        init();
+
+        function init() {
+            let H5 = $('#H5');
+            H5.fullpage({
+                sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+                menu: '#myMenu',
+                onLeave: function (index, nextIndex, direction) {
+                    H5.find('.page').eq(index - 1).trigger('onLeave');
+                },
+                afterLoad: function (anchorLink, index) {
+                    H5.find('.page').eq(index - 1).trigger('onLoad');
+                }
+            });
+            let page = $('.page');
+            let component = $('.component');
+            page.on('onLeave', function () {
+                console.log($(this).attr('id'), '>>>>==', 'onLeave');
+                $(this).find('.component').trigger('onLeave');
+            });
+            page.on('onLoad', function () {
+                console.log($(this).attr('id'), '>>>>==', 'onLoad');
+                $(this).find('.component').trigger('onLoad');
+            });
+            component.on('onLeave', function () {
+                $(this).fadeOut();
+                return false;
+            });
+            component.on('onLoad', function () {
+                $(this).fadeIn();
+                return false;
+            });
+
+            H5.find('.page').eq(0).find('.component').trigger('onLoad');
+        }
+
+
+    });
+
+</script>
+</body>
+</html>
